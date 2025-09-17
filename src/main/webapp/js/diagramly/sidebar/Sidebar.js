@@ -1112,6 +1112,7 @@
 		this.addWebIconsPalette();
 		this.addWebLogosPalette();
 		this.addSignsPalette(signs, dir);
+		this.addLottiePalette();
 		
 		if (this.appendCustomLibraries)
 		{

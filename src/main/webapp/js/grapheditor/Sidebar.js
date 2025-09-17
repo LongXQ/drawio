@@ -2832,6 +2832,100 @@ Sidebar.prototype.createItem = function(cells, title, showLabel, showTitle, widt
 	return elt;
 };
 
+Sidebar.prototype.createLottieItem = function(cells, title, showLabel, showTitle, width, height,
+	allowCellsInserted, showTooltip, clickFn, thumbWidth, thumbHeight, icon, startEditing,
+	sourceCell)
+{
+	showTooltip = (showTooltip != null) ? showTooltip : true;
+	thumbWidth = (thumbWidth != null) ? thumbWidth : this.thumbWidth;
+	thumbHeight = (thumbHeight != null) ? thumbHeight : this.thumbHeight;
+
+	var elt = document.createElement('a');
+	var border = 2 * this.thumbBorder;
+	elt.style.width = (thumbWidth + border) + 'px';
+	elt.style.height = (thumbHeight + border) + 'px';
+
+	// Blocks default click action
+	mxEvent.addListener(elt, 'click', function(evt)
+	{
+		mxEvent.consume(evt);
+	});
+
+	var bounds = new mxRectangle(0, 0, width, height);
+
+	// Applies default styles
+	if (cells != null && cells.length > 0)
+	{
+		var originalCells = cells;
+		cells = this.graph.cloneCells(cells);
+		this.graph.pasteCellStyles(this.graph.includeDescendants(originalCells),
+			this.initialDefaultVertexStyle, this.initialDefaultEdgeStyle);
+
+		if (icon != null)
+		{
+			elt.className = 'geButton';
+			elt.style.backgroundImage = 'url(' + icon + ')';
+			elt.style.backgroundRepeat = 'no-repeat';
+			elt.style.backgroundPosition = 'center';
+			elt.style.backgroundSize = '24px 24px';
+		}
+		else
+		{
+			elt.className = 'geItem';
+			this.createThumb(originalCells, thumbWidth, thumbHeight,
+				elt, title, showLabel, showTitle, width, height);
+			// lottie.loadAnimation({
+			// 	container: elt,
+			// 	renderer: 'svg',
+			// 	loop: true,
+			// 	autoplay: true,
+			// 	path: 'Loading 40 _ Paperplane.json'
+			// });
+		}
+
+		if (cells.length > 1 || cells[0].vertex)
+		{
+			var ds = this.createDragSource(elt, this.createDropHandler(cells, true, allowCellsInserted,
+				bounds, startEditing, sourceCell), this.createDragPreview(width, height),
+				cells, bounds, startEditing);
+			this.addClickHandler(elt, ds, cells, clickFn, startEditing);
+
+			// Uses guides for vertices only if enabled in graph
+			ds.isGuidesEnabled = mxUtils.bind(this, function()
+			{
+				return this.editorUi.editor.graph.graphHandler.guidesEnabled;
+			});
+		}
+		else if (cells[0] != null && cells[0].edge)
+		{
+			var ds = this.createDragSource(elt, this.createDropHandler(cells, false, allowCellsInserted,
+				bounds, startEditing, sourceCell), this.createDragPreview(width, height),
+				cells, bounds, startEditing);
+			this.addClickHandler(elt, ds, cells, clickFn);
+		}
+
+		// Shows a tooltip with the rendered cell
+		if (!mxClient.IS_IOS && showTooltip)
+		{
+			mxEvent.addGestureListeners(elt, null, mxUtils.bind(this, function(evt)
+			{
+				if (mxEvent.isMouseEvent(evt))
+				{
+					this.showTooltip(elt, cells, bounds.width, bounds.height, title, showLabel);
+				}
+			}));
+		}
+		console.log(elt);
+	}
+	else
+	{
+		elt.style.backgroundImage = 'url(' + Editor.svgBrokenImage.src + ')';
+		elt.setAttribute('title', title);
+	}
+
+	return elt;
+};
+
 /**
  * Creates a drop handler for inserting the given cells.
  */
@@ -4287,6 +4381,21 @@ Sidebar.prototype.createVertexTemplateEntry = function(style, width, height, val
  	}));
 }
 
+Sidebar.prototype.createLottieVertexTemplateEntry = function(style, width, height, value, title, showLabel, showTitle, tags)
+{
+	if (tags != null && title != null)
+	{
+		tags += ' ' + title;
+	}
+
+	tags = (tags != null && tags.length > 0) ? tags : ((title != null) ? title.toLowerCase() : '');
+
+	return this.addEntry(tags, mxUtils.bind(this, function()
+ 	{
+ 		return this.createLottieVertexTemplate(style, width, height, value, title, showLabel, showTitle);
+ 	}));
+}
+
 /**
  * Creates a drop handler for inserting the given cells.
  */
@@ -4297,6 +4406,16 @@ Sidebar.prototype.createVertexTemplate = function(style, width, height, value, t
 	cells[0].vertex = true;
 
 	return this.createVertexTemplateFromCells(cells, width, height, title, showLabel, showTitle,
+		allowCellsInserted, showTooltip, clickFn, thumbWidth, thumbHeight, icon, startEditing);
+};
+
+Sidebar.prototype.createLottieVertexTemplate = function(style, width, height, value, title, showLabel, showTitle,
+	allowCellsInserted, showTooltip, clickFn, thumbWidth, thumbHeight, icon, startEditing)
+{
+	var cells = [new mxCell((value != null) ? value : '', new mxGeometry(0, 0, width, height), style)];
+	cells[0].vertex = true;
+
+	return this.createLottieVertexTemplateFromCells(cells, width, height, title, showLabel, showTitle,
 		allowCellsInserted, showTooltip, clickFn, thumbWidth, thumbHeight, icon, startEditing);
 };
 
@@ -4337,6 +4456,16 @@ Sidebar.prototype.createVertexTemplateFromCells = function(cells, width, height,
 	// Use this line to convert calls to this function with lots of boilerplate code for creating cells
 	//console.trace('xml', Graph.compress(mxUtils.getXml(this.graph.encodeCells(cells))), cells);
 	return this.createItem(cells, title, showLabel, showTitle, width, height, allowCellsInserted,
+		showTooltip, clickFn, thumbWidth, thumbHeight, icon, startEditing, sourceCell);
+};
+
+Sidebar.prototype.createLottieVertexTemplateFromCells = function(cells, width, height, title, showLabel,
+	showTitle, allowCellsInserted, showTooltip, clickFn, thumbWidth, thumbHeight, icon, startEditing,
+	sourceCell)
+{
+	// Use this line to convert calls to this function with lots of boilerplate code for creating cells
+	//console.trace('xml', Graph.compress(mxUtils.getXml(this.graph.encodeCells(cells))), cells);
+	return this.createLottieItem(cells, title, showLabel, showTitle, width, height, allowCellsInserted,
 		showTooltip, clickFn, thumbWidth, thumbHeight, icon, startEditing, sourceCell);
 };
 

@@ -2091,6 +2091,9 @@
 	 * Default is label.
 	 */
 	SHAPE_LABEL: 'label',
+
+
+	 SHAPE_LOTTIE: 'lottie',
 	
 	/**
 	 * Variable: SHAPE_CYLINDER

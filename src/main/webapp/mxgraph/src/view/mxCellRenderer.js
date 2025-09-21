@@ -141,6 +141,7 @@ mxCellRenderer.registerShape(mxConstants.SHAPE_DOUBLE_ELLIPSE, mxDoubleEllipse);
 mxCellRenderer.registerShape(mxConstants.SHAPE_SWIMLANE, mxSwimlane);
 mxCellRenderer.registerShape(mxConstants.SHAPE_IMAGE, mxImageShape);
 mxCellRenderer.registerShape(mxConstants.SHAPE_LABEL, mxLabel);
+mxCellRenderer.registerShape(mxConstants.SHAPE_LOTTIE, mxLottie);
 
 /**
  * Function: initializeShape

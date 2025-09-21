@@ -654,37 +654,6 @@ App.isSimpleThemePreferred = function()
  */
 App.main = function(callback, createUi)
 {
-
-	console.log("before settimeout start");
-// 	setTimeout(function (){
-// 		console.log("settimeout start");
-// 		  lottie.loadAnimation({
-//   container: document.getElementById('lottie1'), // the dom element that will contain the animation
-//   renderer: 'svg',
-//   loop: true,
-//   autoplay: true,
-//   // path: 'Material wave loading.json' // the path to the animation json
-//     path:'Loading 40 _ Paperplane.json'
-// });
-// 	}, 20000)
-
-// 	timeF = setInterval(function (){
-// 		console.log("settimeout start");
-// 		c = document.getElementById('lottie2');
-// 		if (c != undefined) {
-// 					  lottie.loadAnimation({
-//   container: document.getElementById('lottie2'), // the dom element that will contain the animation
-//   renderer: 'svg',
-//   loop: true,
-//   autoplay: true,
-//   // path: 'Material wave loading.json' // the path to the animation json
-//     path:'Loading 40 _ Paperplane.json'
-// });
-// 					  clearInterval(timeF);
-// 		}
-// 	}, 1000)
-
-
 	try
 	{
 		// This function is called only once, so we can set the flag here

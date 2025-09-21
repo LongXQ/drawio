@@ -2915,7 +2915,6 @@ Sidebar.prototype.createLottieItem = function(cells, title, showLabel, showTitle
 				}
 			}));
 		}
-		console.log(elt);
 	}
 	else
 	{

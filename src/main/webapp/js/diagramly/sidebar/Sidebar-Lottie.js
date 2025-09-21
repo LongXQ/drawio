@@ -10,8 +10,8 @@
 		var gn = 'mxgraph.lottie';
 		var r = 400;
 		var sb = this;
-		var s = 'image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/lottie/';
-
+		// var s = 'image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/web/';
+		var s = 'shape=lottie';
 		this.setCurrentSearchEntryLibrary('lottie', 'lottie');
 		this.addLottieWebPalette(gn, r, sb, s);
 		this.setCurrentSearchEntryLibrary();
@@ -21,23 +21,27 @@
 	{
 		var dt = 'lottie web ';
 
-		api_center_tags = this.getTagsForStencil(gn, 'api center', dt).join(' ');
-		console.log(api_center_tags);
 		var fns =
 		[
-			this.createVertexTemplateEntry(s + 'API_Center.svg;',
-				r * 0.17, r * 0.17, '', 'API Center', null, null, api_center_tags),
-			this.createLottieVertexTemplateEntry(s + 'API_Center.svg;',
-				r * 0.17, r * 0.17, '', 'Loading 40 _ Paperplane', null, null, this.getTagsForStencil(gn, 'loading 40 _ paperplane', dt).join(' ')),
-			// this.createLottieVertexTemplateEntry(s + 'Loading 40 _ Paperplane.json;',
-			// 	r * 0.17, r * 0.17, '', 'Loading 40 _ Paperplane', null, null, this.getTagsForStencil(gn, 'loading 40 _ paperplane', dt).join(' ')),
+			// this.createVertexTemplateEntry(s + 'API_Center.svg;',
+			// 	r * 0.17, r * 0.17, '', 'API Center', null, null, this.getTagsForStencil(gn, 'api center', dt).join(' ')),
+			this.createVertexTemplateEntry(s,
+				r * 0.17, r * 0.17, '', 'API Center', null, null, this.getTagsForStencil(gn, 'api center', dt).join(' ')),
 		];
 			
 		this.addPalette('lottie', 'Lottie', false, mxUtils.bind(this, function(content)
 				{
 					for (var i = 0; i < fns.length; i++)
 					{
-						content.appendChild(fns[i](content));
+						var fns_content = fns[i](content);
+						content.appendChild(fns_content);
+						lottie.loadAnimation({
+							container: fns_content.getElementsByClassName('lottie')[0],
+							renderer: 'svg',
+							loop: true,
+							autoplay: true,
+							path: 'Loading 40 _ Paperplane.json'
+						});
 					}
 		}));
 	};

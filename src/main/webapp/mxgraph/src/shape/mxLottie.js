@@ -40,7 +40,7 @@ function mxLottie(bounds, image, fill, stroke, strokewidth)
 /**
  * Extends mxShape.
  */
-mxUtils.extend(mxLottie, mxShape);
+mxUtils.extend(mxLottie, mxRectangleShape);
 
 /**
  * Variable: preserveImageAspect
@@ -203,3 +203,22 @@ mxLottie.prototype.afterPaint = function(c)
 	this.lottie_rendered = true;
 
 };
+
+timeI = setInterval(function (){
+	var node = document.getElementById('lottie1');
+
+	if (node === null ||  node === undefined) {
+		return;
+	}
+
+	console.log(node);
+		lottie.loadAnimation({
+		container: node,
+		renderer: 'svg',
+		loop: true,
+		autoplay: true,
+		path: 'Loading 40 _ Paperplane.json'
+	});
+		clearInterval(timeI);
+
+}, 1000);

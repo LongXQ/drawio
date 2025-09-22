@@ -11,7 +11,7 @@
 		var r = 400;
 		var sb = this;
 		// var s = 'image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/web/';
-		var s = 'shape=lottie';
+		var s = '"text;shape=lottie;whiteSpace=wrap;html=1;';
 		this.setCurrentSearchEntryLibrary('lottie', 'lottie');
 		this.addLottieWebPalette(gn, r, sb, s);
 		this.setCurrentSearchEntryLibrary();

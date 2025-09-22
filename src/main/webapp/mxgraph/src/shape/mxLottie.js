@@ -204,6 +204,12 @@ mxLottie.prototype.afterPaint = function(c)
 
 };
 
+mxLottie.prototype.redraw = function()
+{
+	console.log("mxLottie redraw");
+	mxShape.prototype.redraw.apply(this, arguments);
+}
+
 timeI = setInterval(function (){
 	var node = document.getElementById('lottie1');
 

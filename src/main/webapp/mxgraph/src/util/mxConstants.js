@@ -2094,6 +2094,8 @@
 
 
 	 SHAPE_LOTTIE: 'lottie',
+
+	 SHAPE_LOTTIE_TEXT: 'lottieText',
 	
 	/**
 	 * Variable: SHAPE_CYLINDER

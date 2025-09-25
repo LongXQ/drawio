@@ -254,6 +254,7 @@ mxText.prototype.getActualTextDirection = function()
  */
 mxText.prototype.paint = function(c, update)
 {
+	console.log("mxText");
 	// Scale is passed-through to canvas
 	var s = this.scale;
 	var x = this.bounds.x / s;

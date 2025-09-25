@@ -638,6 +638,7 @@ if (mxForceIncludes || !(typeof module === 'object' && module.exports != null))
 	mxClient.include(mxClient.basePath + '/shape/mxArrowConnector.js');
 	mxClient.include(mxClient.basePath + '/shape/mxText.js');
 	mxClient.include(mxClient.basePath + '/shape/mxLottie.js');
+	mxClient.include(mxClient.basePath + '/shape/mxLottieText.js');
 	mxClient.include(mxClient.basePath + '/shape/mxTriangle.js');
 	mxClient.include(mxClient.basePath + '/shape/mxHexagon.js');
 	mxClient.include(mxClient.basePath + '/shape/mxLine.js');

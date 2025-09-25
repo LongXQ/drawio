@@ -142,6 +142,7 @@ mxCellRenderer.registerShape(mxConstants.SHAPE_SWIMLANE, mxSwimlane);
 mxCellRenderer.registerShape(mxConstants.SHAPE_IMAGE, mxImageShape);
 mxCellRenderer.registerShape(mxConstants.SHAPE_LABEL, mxLabel);
 mxCellRenderer.registerShape(mxConstants.SHAPE_LOTTIE, mxLottie);
+mxCellRenderer.registerShape(mxConstants.SHAPE_LOTTIE_TEXT, mxLottieText);
 
 /**
  * Function: initializeShape

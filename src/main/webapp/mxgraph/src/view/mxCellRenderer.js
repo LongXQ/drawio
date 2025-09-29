@@ -1527,7 +1527,7 @@ mxCellRenderer.prototype.getShapesForState = function(state)
  */
 mxCellRenderer.prototype.redraw = function(state, force, rendering)
 {
-	var shapeChanged = this.redrawShape(state, force, rendering);
+	// var shapeChanged = this.redrawShape(state, force, rendering);
 
 	if (state.shape != null && (rendering == null || rendering))
 	{

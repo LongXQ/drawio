@@ -1,0 +1,5 @@
+mxGraph.prototype.getCellStyle
+
+mxStylesheet.prototype.getDefaultVertexStyle
+
+mxGraphView.prototype.getState

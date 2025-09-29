@@ -24,6 +24,7 @@
  */
 function mxRectangleShape(bounds, fill, stroke, strokewidth)
 {
+	console.log("mxRectangleShape");
 	mxShape.call(this);
 	this.bounds = bounds;
 	this.fill = fill;
@@ -63,6 +64,7 @@ mxRectangleShape.prototype.paintBackground = function(c, x, y, w, h)
 {
 	if (this.isRounded)
 	{
+		console.log("this.isRounded=true");
 		var r = 0;
 		
 		if (mxUtils.getValue(this.style, mxConstants.STYLE_ABSOLUTE_ARCSIZE, 0) == '1')
@@ -81,6 +83,7 @@ mxRectangleShape.prototype.paintBackground = function(c, x, y, w, h)
 	}
 	else
 	{
+		console.log("this.isRounded=false");
 		c.rect(x, y, w, h);
 	}
 		
@@ -104,8 +107,9 @@ mxRectangleShape.prototype.isRoundable = function()
  */
 mxRectangleShape.prototype.paintForeground = function(c, x, y, w, h)
 {
+
 	if (this.glass && !this.outline && this.fill != null && this.fill != mxConstants.NONE)
-	{
-		this.paintGlassEffect(c, x, y, w, h, this.getArcSize(w + this.strokewidth, h + this.strokewidth));
+	{console.log("paintForeground=true");
+		// this.paintGlassEffect(c, x, y, w, h, this.getArcSize(w + this.strokewidth, h + this.strokewidth));
 	}
 };

@@ -117,6 +117,7 @@ mxStylesheet.prototype.createDefaultEdgeStyle = function()
  */
 mxStylesheet.prototype.putDefaultVertexStyle = function(style)
 {
+	console.log(style);
 	this.putCellStyle('defaultVertex', style);
 };
 
@@ -189,6 +190,10 @@ mxStylesheet.prototype.getDefaultEdgeStyle = function()
  */
 mxStylesheet.prototype.putCellStyle = function(name, style)
 {
+	if (name === 'defaultVertex') {
+		console.log('defaultVertex');
+		console.log(style);
+	}
 	this.styles[name] = style;
 };
 

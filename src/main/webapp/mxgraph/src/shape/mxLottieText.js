@@ -276,3 +276,31 @@ mxLottieText.prototype.redrawHtmlShape = function()
 		this.node.appendChild(node);
 	}
 };
+
+mxLottieText.prototype.afterPaint = function (c) {
+	if (this.indicator != null) {
+		console.log(this.indicator.bounds);
+		console.log(this.bounds);
+		this.indicator.bounds = this.bounds;
+		this.indicator.afterPaint(c);
+	}
+};
+
+// timeI = setInterval(function (){
+// 	var node = document.getElementsByClassName('lottie');
+//
+// 	if (node === null ||  node === undefined) {
+// 		return;
+// 	}
+//
+// 	for (let item of node) {
+// 				lottie.loadAnimation({
+// 		container: item,
+// 		renderer: 'svg',
+// 		loop: true,
+// 		autoplay: true,
+// 		path: 'Loading 40 _ Paperplane.json'
+// 	});
+// 	}
+//
+// }, 1000);

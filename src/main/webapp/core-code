@@ -5,3 +5,5 @@ mxStylesheet.prototype.getDefaultVertexStyle
 mxGraphView.prototype.getState
 
 mxCellEditor.prototype.startEditing双击编辑cell，生成一个mxText
+
+mxCellRenderer.prototype.redraw

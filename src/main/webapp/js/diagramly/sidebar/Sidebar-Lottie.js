@@ -13,7 +13,7 @@
 		// var s = 'image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/web/';
 		// var s = 'text;shape=lottieText;whiteSpace=wrap;html=1;';
 		// align=center;verticalAlign=middle;
-		var s = 'text;shape=lottieText;html=1;whiteSpace=wrap;rounded=0;lottie=img/lib/azure2/web/'
+		var s = 'text;shape=lottie;html=1;whiteSpace=wrap;rounded=0;lottie=img/lottie/'
 		this.setCurrentSearchEntryLibrary('lottie', 'lottie');
 		this.addLottieWebPalette(gn, r, sb, s);
 		this.setCurrentSearchEntryLibrary();
@@ -27,11 +27,12 @@
 
 		var fns =
 		[
-			// this.createVertexTemplateEntry(s + 'API_Center.svg;',
-			// 	r * 0.17, r * 0.17, '', 'API Center', null, null, this.getTagsForStencil(gn, 'api center', dt).join(' ')),
-			this.createVertexTemplateEntry(s,
-				60, 30, svg_data,
-				'API Center', null, null, 'api center'),
+			this.createVertexTemplateEntry(s + 'Loading 40 _ Paperplane.json',
+				60, 30, '',
+				'Loading 40 _ Paperplane', null, null, 'Loading 40 _ Paperplane'),
+			this.createVertexTemplateEntry(s + 'Material wave loading.json',
+				60, 30, '',
+				'Material wave loading', null, null, 'Material wave loading'),
 		];
 			
 		this.addPalette('lottie', 'Lottie', false, mxUtils.bind(this, function(content)
@@ -40,13 +41,14 @@
 					{
 						var fns_content = fns[i](content);
 						content.appendChild(fns_content);
-						// lottie.loadAnimation({
-						// 	container: fns_content.getElementsByClassName('lottie')[0],
-						// 	renderer: 'svg',
-						// 	loop: true,
-						// 	autoplay: true,
-						// 	path: 'Loading 40 _ Paperplane.json'
-						// });
+						const container = fns_content.getElementsByClassName('lottie')[0];
+						lottie.loadAnimation({
+							container: container,
+							renderer: 'svg',
+							loop: true,
+							autoplay: true,
+							path: container.getAttribute('data-lottie')
+						});
 					}
 		}));
 	};

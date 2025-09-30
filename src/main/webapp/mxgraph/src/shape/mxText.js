@@ -61,7 +61,6 @@ function mxText(value, bounds, align, valign, color,
 	spacingBottom, spacingLeft, horizontal, background, border,
 	wrap, clipped, overflow, labelPadding, textDirection)
 {
-	console.log("mxText");
 	mxShape.call(this);
 	this.value = value;
 	this.bounds = bounds;

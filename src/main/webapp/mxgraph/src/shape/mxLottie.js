@@ -30,7 +30,6 @@ function mxLottie(bounds, fill, stroke, strokewidth)
 {
 	mxRectangleShape.call(this, bounds, fill, stroke, strokewidth);
 	this.lottie_rendered = false;
-	console.log(this);
 };
 
 /**
@@ -70,8 +69,6 @@ mxLottie.prototype.paintVertexShape = function(c, x, y, w, h)
 
 mxLottie.prototype.afterPaint = function(c)
 {
-	console.log("mxLottie afterPaint");
-	console.log(this.lottie_rendered);
 	// if (this.lottie_rendered) return;
 	var container = this.node.getElementsByClassName('lottie')[0];
 	const path = this.getLottieSource();
@@ -82,7 +79,6 @@ mxLottie.prototype.afterPaint = function(c)
 		autoplay: true,
 		path: path
 	});
-	// this.lottie_rendered = true;
 
 };
 
@@ -94,6 +90,5 @@ mxLottie.prototype.paintForeground = function(c, x, y, w, h)
 mxLottie.prototype.getLottieSource = function()
 {
 	const lottie = mxUtils.getValue(this.style, 'lottie', null);
-	console.log(lottie);
 	return lottie;
 };

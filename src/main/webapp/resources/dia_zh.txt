@@ -1320,3 +1320,4 @@ confPublishErr=另一个更新与您的发布冲突，请重试该操作
 confACacheMapping=Cache page IDs mapping
 confARemImpPages=Remember imported pages
 delCachedData=Delete Cached Data
+startAnimation=开始动画

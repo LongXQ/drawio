@@ -24,7 +24,6 @@
  */
 function mxLabel(bounds, fill, stroke, strokewidth)
 {
-	console.log("mxLable");
 	mxRectangleShape.call(this, bounds, fill, stroke, strokewidth);
 };
 

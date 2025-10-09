@@ -108,6 +108,29 @@ Actions.prototype.init = function()
 	}).isEnabled = isGraphEnabled;
 	this.addAction('save', function() { ui.saveFile(false); }, null, null, Editor.ctrlKey + '+S').isEnabled = isGraphEnabled;
 	this.addAction('saveAs...', function() { ui.saveFile(true); }, null, null, Editor.ctrlKey + '+' + Editor.shiftKey + '+S');
+
+	this.addAction('startAnimation', function() {
+		console.log("startAnimation");
+
+		// var editorUi = this.editorUi;
+		var cells = graph.getSelectionCells();
+		console.log(cells);
+
+		const {animate, scroll} = Motion;
+
+		for (var i = 0; i < cells.length; i++)
+		{
+			var state = graph.view.getState(cells[i]);
+			console.log(state);
+			var node = state.shape.node;
+			console.log(node);
+			var nodes = graph.getNodesForCells(cells);
+			console.log(nodes);
+
+			animate(nodes, {rotate: 90});
+		}
+	}, null, null, null);
+
 	this.addAction('export...', function() { ui.showDialog(new ExportDialog(ui).container, 300, 340, true, true); });
 	this.addAction('editDiagram...', function()
 	{

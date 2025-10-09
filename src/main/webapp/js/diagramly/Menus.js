@@ -4861,6 +4861,53 @@
 			}
 		})));
 
+		this.put('startAnimation', new Menu(mxUtils.bind(this, function(menu, parent)
+		{
+			console.log('startAnimation menu');
+
+
+			const {animate, scroll} = Motion;
+
+					// var editorUi = this.editorUi;
+		var cells = graph.getSelectionCells();
+		console.log(cells);
+
+		for (var i = 0; i < cells.length; i++)
+		{
+			var state = graph.view.getState(cells[i]);
+			console.log(state);
+			var node = state.shape.node;
+			console.log(node);
+			var nodes = graph.getNodesForCells(cells);
+			console.log(nodes);
+
+			// for (var f=0;f<nodes.length;f++){
+			// 	if (f === 1) {
+			// 		animate(nodes[f].firstChild.firstChild.firstChild.firstChild, {rotate: 90});
+			// 	}else {
+			// 		animate(nodes[f], {rotate: 90});
+			// 	}
+			// }
+
+			// var x = parseInt(nodes[0].firstChild.attributes.x.value) + 100;
+			// var y = parseInt(nodes[0].firstChild.attributes.y.value) + 50;
+			// console.log(x);
+			// console.log(y);
+			//
+			// gsap.to(nodes[0].firstChild, {duration: 1, attr: {x: x, y: y}, ease: "none"});
+
+			gsap.to(nodes[0], {
+  motionPath: {
+    path: "#path",
+  },
+
+  duration: 5,
+});
+
+		}
+
+		})));
+
 		this.put('file', new Menu(mxUtils.bind(this, function(menu, parent)
 		{
 			// Compatiblity code for live UI switch and static UI
@@ -5081,7 +5128,7 @@
 						}
 					}
 					
-					this.addMenuItems(menu, ['-', 'save', 'saveAs', '-'], parent);
+					this.addMenuItems(menu, ['-', 'save', 'saveAs', 'startAnimation', '-'], parent);
 					
 					if (!mxClient.IS_CHROMEAPP && !EditorUi.isElectronApp &&
 						editorUi.getServiceName() == 'draw.io' &&

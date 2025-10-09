@@ -1320,3 +1320,4 @@ confPublishErr=Another update conflicted with your publish, please try the opera
 confACacheMapping=Cache page IDs mapping
 confARemImpPages=Remember imported pages
 delCachedData=Delete Cached Data
+startAnimation=Start Animation

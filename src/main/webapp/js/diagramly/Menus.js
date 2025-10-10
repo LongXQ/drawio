@@ -4872,6 +4872,27 @@
 		var cells = graph.getSelectionCells();
 		console.log(cells);
 
+		var myPic = document.getElementById('myPic');
+		if (myPic != null) {
+											gsap.to(myPic, {
+				duration: 5,
+				repeat: -1,
+				repeatDelay: 1,
+				yoyo: true,
+				ease: "power1.inOut",
+				motionPath: {
+					path: "#path",
+					align: "#path",
+					autoRotate: true,
+					alignOrigin: [0.5, 0.5]
+				}
+			});
+		}
+
+
+
+
+
 		for (var i = 0; i < cells.length; i++)
 		{
 			var state = graph.view.getState(cells[i]);
@@ -4880,6 +4901,20 @@
 			console.log(node);
 			var nodes = graph.getNodesForCells(cells);
 			console.log(nodes);
+
+						gsap.to(nodes[0], {
+				duration: 5,
+				repeat: -1,
+				repeatDelay: 1,
+				yoyo: true,
+				ease: "power1.inOut",
+				motionPath: {
+					path: "#path",
+					align: "#path",
+					autoRotate: true,
+					alignOrigin: [0.5, 0.5]
+				}
+			});
 
 			// for (var f=0;f<nodes.length;f++){
 			// 	if (f === 1) {
@@ -4895,15 +4930,6 @@
 			// console.log(y);
 			//
 			// gsap.to(nodes[0].firstChild, {duration: 1, attr: {x: x, y: y}, ease: "none"});
-
-			gsap.to(nodes[0], {
-  motionPath: {
-    path: "#path",
-  },
-
-  duration: 5,
-});
-
 		}
 
 		})));
